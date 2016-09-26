@@ -1,0 +1,19 @@
+nav {
+    color:white;
+}
+
+.dropdown {
+    margin-right:10px;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    color: #373a3c;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+}

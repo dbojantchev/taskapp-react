@@ -1,0 +1,1 @@
+watch "sh scripts/build.sh" web/js/src web/css/components
