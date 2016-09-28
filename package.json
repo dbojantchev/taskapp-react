@@ -11,6 +11,7 @@
     "babel-preset-react": "^6.11.1",
     "body-parser": "^1.15.2",
     "cfenv": "1.0.x",
+    "classnames": "^2.2.5",
     "debug": "~2.1.1",
     "ejs": "^2.2.4",
     "event-stream": "^3.3.4",
@@ -20,6 +21,7 @@
     "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-modal": "^1.4.0",
     "redux": "^3.6.0",
     "request": "^2.72.0",
     "stream": "0.0.2"

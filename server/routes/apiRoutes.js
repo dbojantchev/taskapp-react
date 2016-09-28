@@ -14,7 +14,7 @@ router.post('/getTasks', function(req, res, next) {
     );
 });
 
-router.post('/addTask', function(req, res, next) {
+router.post('/saveTask', function(req, res, next) {
     postgres.addTask(req.body, function(response){
             console.log('response=' + response);
             res.send(response);

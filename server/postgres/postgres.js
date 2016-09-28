@@ -9,11 +9,14 @@ function postgres() {
     var client = new pg.Client(connectionString);
     client.connect();
 
-    this.getTasks = function (data, cb) {
+    this.getTasks = function (cond, cb) {
         sqlstr = "SELECT * FROM TASK";
 
-        if(data.sort) {
-            sqlstr += ' ORDER BY ' + data.sort.sortCol + ' ' + data.sort.sortDir;
+        if(Object.keys(cond).length > 0) {
+            var cond = JSON.parse(Object.keys(cond));
+            if (cond.sort) {
+                sqlstr += ' ORDER BY ' + cond.sort.sortCol + ' ' + cond.sort.sortDir;
+            }
         }
 
         console.log('sqlstr = ' + sqlstr);
@@ -33,8 +36,8 @@ function postgres() {
 
     this.addTask = function (data, cb) {
 
-        sqlstr = "INSERT INTO TASK (TITLE, DESCRIPTION, PRIORITY, STATUS, CREATE_DT)" +
-        "VALUES ('" + data.title + "','" + data.description + "'," + data.priority + ","
+        sqlstr = "INSERT INTO TASK (TITLE, DESCRIPTION, PRIORITY, STATUS, CREATE_DT) " +
+        " VALUES ('" + data.title + "','" + data.description + "'," + data.priority + ","
             + data.status +  ", now() )";
 
         console.log('addTask:' + sqlstr);

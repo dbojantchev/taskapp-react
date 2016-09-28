@@ -28,11 +28,14 @@ var Task = function (_React$Component) {
     }
 
     _createClass(Task, [{
+        key: 'toggleCompleted',
+        value: function toggleCompleted(ev) {
+            this.props.task.status = this.props.task.status === 0 ? 1 : 0;
+            this.props.markComplete(this.props.task);
+        }
+    }, {
         key: 'render',
         value: function render() {
-
-            var style1 = { textAlign: 'center' };
-            var style2 = { marginLeft: '30px' };
 
             var task = this.props.task;
 
@@ -56,7 +59,7 @@ var Task = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'td',
-                    { style: style1 },
+                    { style: { textAlign: 'center' } },
                     task.priority
                 ),
                 _react2.default.createElement(
@@ -73,7 +76,8 @@ var Task = function (_React$Component) {
                 _react2.default.createElement(
                     'td',
                     null,
-                    _react2.default.createElement('input', { id: 'showTasks{task.id}', type: 'checkbox', style: style2 })
+                    _react2.default.createElement('input', { id: 'markComplete{task.id}', type: 'checkbox', checked: task.status > 0 ? "checked" : "", style: { marginLeft: '30px' },
+                        onClick: this.toggleCompleted.bind(this), 'data-id': task.id })
                 )
             );
         }
