@@ -1,5 +1,7 @@
 
-Simple task management app implemented in Angular.js (v1.X)
+Simple task management app implemented in Angular.js (v1.X). 
+
+Compare to the same exact app written in react.JS: https://github.com/dbojantchev/taskapp-react
 
 Deployed on IBM Bluemix
 
@@ -13,6 +15,8 @@ The server is Node.js plus Express.
 
 Run with
 
+
 npm install
+
 npm run
 
