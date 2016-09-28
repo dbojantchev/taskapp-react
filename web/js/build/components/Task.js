@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _store = require('../store');
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31,7 +35,8 @@ var Task = function (_React$Component) {
         key: 'toggleCompleted',
         value: function toggleCompleted(ev) {
             this.props.task.status = this.props.task.status === 0 ? 1 : 0;
-            this.props.markComplete(this.props.task);
+            //this.props.markComplete(this.props.task);     /* DIRECT INVOCATION */
+            _store2.default.dispatch({ type: 'TOGGLED_TASK_COMPLETION', task: this.props.task });
         }
     }, {
         key: 'render',

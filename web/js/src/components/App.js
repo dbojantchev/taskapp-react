@@ -6,6 +6,7 @@ import Header from './Header';
 import Menu from './Menu';
 import TaskContainer from './TaskContainer';
 import Task from './Task';
+import store from '../store';
 
 var App = React.createClass({
     render: function () {

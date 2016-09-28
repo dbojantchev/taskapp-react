@@ -26,6 +26,10 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _store = require('../store');
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -149,7 +153,26 @@ var TaskContainer = function (_React$Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
+            var _this2 = this;
+
+            this.redux_unsubscribe = _store2.default.subscribe(function () {
+                var state = _store2.default.getState(),
+                    that = _this2;
+
+                if (state.type === 'TOGGLED_TASK_COMPLETION') {
+                    console.log('TOGGLED_TASK_COMPLETION');
+                    _this2.markComplete(state.task);
+                } else {
+                    console.log('Unknown state: ' + state.type);
+                }
+            });
+
             this.getTasks();
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.redux_unsubscribe();
         }
     }, {
         key: 'showAddTaskModal',
@@ -170,7 +193,7 @@ var TaskContainer = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             var tasksJSX = [];
             var markComplete = this.markComplete;
@@ -219,7 +242,7 @@ var TaskContainer = function (_React$Component) {
                         ),
                         _react2.default.createElement('input', { type: 'checkbox', className: 'pull-right',
                             onClick: function onClick(event) {
-                                return _this2.toggleShowCompleted(event);
+                                return _this3.toggleShowCompleted(event);
                             } })
                     )
                 ),
@@ -350,7 +373,7 @@ var TaskContainer = function (_React$Component) {
                                         'Title'
                                     ),
                                     _react2.default.createElement('input', { type: 'text', onChange: function onChange(event) {
-                                            return _this2.setState({ newTitle: event.target.value });
+                                            return _this3.setState({ newTitle: event.target.value });
                                         }, placeholder: 'Title', value: this.state.newTitle })
                                 ),
                                 _react2.default.createElement(
@@ -362,7 +385,7 @@ var TaskContainer = function (_React$Component) {
                                         'Description'
                                     ),
                                     _react2.default.createElement('input', { type: 'text', onChange: function onChange(event) {
-                                            return _this2.setState({ newDescription: event.target.value });
+                                            return _this3.setState({ newDescription: event.target.value });
                                         }, placeholder: 'Description', value: this.state.newDescription })
                                 ),
                                 _react2.default.createElement(
@@ -374,7 +397,7 @@ var TaskContainer = function (_React$Component) {
                                         'Priority (numeric)'
                                     ),
                                     _react2.default.createElement('input', { type: 'number', onChange: function onChange(event) {
-                                            return _this2.setState({ newPriority: event.target.value });
+                                            return _this3.setState({ newPriority: event.target.value });
                                         }, placeholder: 'Priority', value: this.state.newPriority })
                                 )
                             )

@@ -5,6 +5,7 @@ import ReactModal from 'react-modal';
 import Modal from './Modal';
 import Task from './Task';
 import classNames from 'classnames';
+import store from '../store';
 
 class TaskContainer extends React.Component {
 
@@ -109,8 +110,25 @@ class TaskContainer extends React.Component {
     }
 
     componentDidMount() {
+
+        this.redux_unsubscribe = store.subscribe( () => {
+            var state = store.getState(), that = this;
+
+            if (state.type === 'TOGGLED_TASK_COMPLETION') {
+                console.log('TOGGLED_TASK_COMPLETION');
+                this.markComplete(state.task);
+            } else {
+                console.log('Unknown state: ' + state.type);
+            }
+        });
+        
         this.getTasks();
     }
+
+    componentWillUnmount() {
+        this.redux_unsubscribe();
+    }
+
 
     showAddTaskModal(){
         $('#addTask').modal('show');

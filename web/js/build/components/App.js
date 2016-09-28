@@ -28,6 +28,10 @@ var _Task = require('./Task');
 
 var _Task2 = _interopRequireDefault(_Task);
 
+var _store = require('../store');
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = _react2.default.createClass({
